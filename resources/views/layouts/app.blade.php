@@ -12,7 +12,7 @@
             <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <a href="/posts" class="text-2xl font-bold tracking-wide text-[#990000] hover:text-red-700 transition-colors">Barangay Bulletin</a>
-                    <p class="text-sm text-gray-500 font-medium">Barangay Matina Crossing Health Center</p>
+                    <p class="text-sm text-gray-500 font-medium">Purok Cañada</p>
                 </div>
                 
                 <div class="flex items-center gap-4 text-sm font-medium">
@@ -48,7 +48,7 @@
         </main>
 
         <footer class="bg-white text-gray-500 text-center text-sm py-6 border-t border-gray-200 mt-auto shadow-inner">
-            &copy; 2026 Barangay Matina Crossing Health Center &middot; Davao City
+            &copy; 2026 Purok Cañada &middot; Davao City
         </footer>
     </body> 
 </html>
