@@ -20,7 +20,7 @@
             
             <div class="flex gap-2 w-full sm:w-auto">
                 <button class="flex-1 sm:flex-none bg-[#990000] text-white font-medium px-6 py-2.5 rounded-lg shadow-sm hover:bg-[#7a0000] transition-colors">Filter</button>
-                @if(request('q') || request('category'))
+                @if(request('q') || request('category') || request('tag'))
                     <a href="{{ route('posts.index') }}" class="flex items-center justify-center px-4 py-2.5 text-gray-500 hover:text-[#990000] hover:bg-red-50 rounded-lg transition-colors">Clear</a>
                 @endif
             </div>
@@ -28,9 +28,8 @@
     </div>
 
     <!-- Modern Card Grid -->
-    <!-- Modern Card Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        @forelse ($posts as$post)
+        @forelse ($posts as $post)
             <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-6 relative flex flex-col">
                 @if($post->is_pinned)
                     <span class="absolute top-5 right-5 bg-[#990000] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm">Pinned</span>
@@ -38,8 +37,8 @@
                 
                 <div class="mb-3 flex flex-wrap gap-2">
                     <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-md">{{ $post->category }}</span>
-                    @foreach($post->tags as$tag)
-                        <span class="inline-block bg-red-50 text-[#990000] border border-red-100 text-xs font-medium px-2 py-1 rounded-md">{{ $tag->name }}</span>
+                    @foreach($post->tags as $tag)
+                        <a href="{{ route('posts.index', ['tag' => $tag->name]) }}" class="inline-block bg-red-50 text-[#990000] border border-red-100 text-xs font-medium px-2 py-1 rounded-md hover:bg-[#990000] hover:text-white transition-colors">{{ $tag->name }}</a>
                     @endforeach
                 </div>
                 
