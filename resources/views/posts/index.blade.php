@@ -28,24 +28,33 @@
     </div>
 
     <!-- Modern Card Grid -->
+    <!-- Modern Card Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        @forelse ($posts as $post)
+        @forelse ($posts as$post)
             <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 p-6 relative flex flex-col">
                 @if($post->is_pinned)
                     <span class="absolute top-5 right-5 bg-[#990000] text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm">Pinned</span>
                 @endif
                 
-                <div class="mb-4">
-                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-md">{{ $post->category }}</span>
+                <div class="mb-3 flex flex-wrap gap-2">
+                    <span class="inline-block bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded-md">{{ $post->category }}</span>
+                    @foreach($post->tags as$tag)
+                        <span class="inline-block bg-red-50 text-[#990000] border border-red-100 text-xs font-medium px-2 py-1 rounded-md">{{ $tag->name }}</span>
+                    @endforeach
                 </div>
                 
-                <h2 class="text-xl font-bold mb-3 pr-16 leading-tight">
+                <h2 class="text-xl font-bold mb-1 pr-16 leading-tight">
                     <a href="{{ route('posts.show', $post->id) }}" class="text-gray-800 hover:text-[#990000] transition-colors">{{ $post->title }}</a>
                 </h2>
                 
+                <p class="text-sm text-gray-500 mb-4">By <a href="{{ route('authors.show', $post->author->id) }}" class="text-[#990000] hover:underline font-medium">{{ $post->author->name }}</a></p>
+                
                 <div class="mt-auto pt-4 border-t border-gray-50 text-sm text-gray-400 flex justify-between items-center">
                     <span class="font-medium text-gray-500">{{ $post->published_at->format('M d, Y') }}</span>
-                    <span class="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md text-xs font-medium">👁 {{ $post->views }}</span>
+                    <div class="flex gap-3">
+                        <span class="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md text-xs font-medium">💬 {{ $post->comments_count }}</span>
+                        <span class="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-md text-xs font-medium">👁 {{ $post->views }}</span>
+                    </div>
                 </div>
             </div>
         @empty
